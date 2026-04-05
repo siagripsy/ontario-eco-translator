@@ -16,7 +16,7 @@ steps:
       - --platform=managed
       - --allow-unauthenticated
       - --add-cloudsql-instances=ontario-eco-translator-492405:us-central1:ontario-eco-sql
-      - --set-secrets=DB_USER=db-user:latest,DB_PASSWORD=db-password:latest,DB_NAME=db-name:latest,CLOUD_SQL_CONNECTION_NAME=cloud-sql-connection-name:latest
+      - --set-secrets=DB_USER=DB_USER:latest,DB_PASSWORD=DB_PASSWORD:latest,DB_NAME=DB_NAME:latest,CLOUD_SQL_CONNECTION_NAME=CLOUD_SQL_CONNECTION_NAME:latest
 
 options:
   logging: CLOUD_LOGGING_ONLY
