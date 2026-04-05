@@ -1,13 +1,10 @@
 steps:
-  # Build Docker image
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/ontario-eco-translator-repo/app', '.']
 
-  # Push to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/ontario-eco-translator-repo/app']
 
-  # Deploy to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
     args:
@@ -20,6 +17,9 @@ steps:
       - --allow-unauthenticated
       - --add-cloudsql-instances=ontario-eco-translator-492405:us-central1:ontario-eco-sql
       - --set-secrets=DB_USER=db-user:latest,DB_PASSWORD=db-password:latest,DB_NAME=db-name:latest,CLOUD_SQL_CONNECTION_NAME=cloud-sql-connection-name:latest
+
+options:
+  logging: CLOUD_LOGGING_ONLY
 
 images:
   - 'us-central1-docker.pkg.dev/$PROJECT_ID/ontario-eco-translator-repo/app'
