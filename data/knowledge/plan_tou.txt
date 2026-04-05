@@ -1,0 +1,6 @@
+Time-of-Use (TOU) summary:
+
+- TOU pricing depends on the time of day.
+- TOU commonly uses On-peak, Mid-peak, and Off-peak periods.
+- Weekends and holidays are typically Off-peak.
+- If the bill explicitly says Time-of-Use or shows only On-peak, Mid-peak, and Off-peak periods, TOU is a strong fit.

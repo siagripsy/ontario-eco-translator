@@ -1,0 +1,6 @@
+Ultra-Low Overnight (ULO) summary:
+
+- ULO commonly includes Overnight or Ultra-Low Overnight periods, plus Mid-peak and On-peak.
+- ULO is designed to reward electricity use during overnight hours.
+- Bills may also show weekend off-peak wording depending on the utility format.
+- If the bill shows Overnight together with On-peak and Mid-peak, ULO is a strong fit.

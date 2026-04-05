@@ -1,0 +1,5 @@
+Tiered pricing summary:
+
+- Tiered pricing depends on total electricity usage, not the time of day.
+- Bills often show Tier 1 and Tier 2 line items or explicitly use the word Tiered.
+- If the bill shows Tier 1 and Tier 2 instead of time periods, Tiered is a strong fit.

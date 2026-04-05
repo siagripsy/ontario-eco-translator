@@ -1,0 +1,128 @@
+Ontario Electricity Billing Knowledge Base
+
+----------------------------------------
+PRICING SYSTEM OVERVIEW
+----------------------------------------
+
+There are three main electricity pricing plans in Ontario:
+
+1. Time-of-Use (TOU)
+2. Ultra-Low Overnight (ULO)
+3. Tiered Pricing
+
+----------------------------------------
+TIME-OF-USE (TOU)
+----------------------------------------
+
+Electricity price depends on time of day.
+
+There are three periods:
+
+- Off-Peak:
+  Lowest demand periods
+  Typically nights and weekends
+
+- Mid-Peak:
+  Moderate demand periods
+  Typically daytime but not busiest hours
+
+- On-Peak:
+  Highest demand periods
+  Typically when people are active at home
+
+Seasonal schedule:
+
+SUMMER (May 1 – October 31):
+- On-Peak: 11 AM – 5 PM
+- Mid-Peak: 7–11 AM and 5–7 PM
+- Off-Peak: 7 PM – 7 AM + weekends
+
+WINTER (November 1 – April 30):
+- On-Peak: 7–11 AM and 5–7 PM
+- Mid-Peak: 11 AM – 5 PM
+- Off-Peak: 7 PM – 7 AM + weekends
+
+Note: weekends and statutory holidays are always off-peak.
+
+----------------------------------------
+ULTRA-LOW OVERNIGHT (ULO)
+----------------------------------------
+
+Four pricing periods:
+
+- Ultra-Low Overnight: 
+  Overnight hours (lowest cost)(11:00 PM - 7:00 AM)
+
+- Weekend Off-Peak:
+  Entire weekends and holidays (7:00 AM - 11:00 PM)
+
+- Mid-Peak:
+  Daytime moderate usage ( 7:00 AM - 4:00 PM + 9:00 PM - 11:00 PM)
+
+- On-Peak:
+  Highest demand periods (4:00 PM - 9:00 PM )
+
+ULO schedule is consistent year-round.
+
+----------------------------------------
+TIERED PRICING
+----------------------------------------
+
+Electricity price depends on total usage, not time.
+
+Residential thresholds:
+
+- Summer (May–Oct):
+  Tier 1: up to 600 kWh
+  Tier 2: above 600 kWh
+
+- Winter (Nov–Apr):
+  Tier 1: up to 1000 kWh
+  Tier 2: above 1000 kWh
+
+----------------------------------------
+APPROXIMATE PRICES (FOR ANALYSIS)
+----------------------------------------
+
+These are typical Ontario residential rates:
+
+TOU:
+- Off-Peak: ~8.7 cents per kWh
+- Mid-Peak: ~12.2 cents per kWh
+- On-Peak: ~18.2 cents per kWh
+
+ULO:
+- Ultra-Low Overnight: ~2.4 cents per kWh
+- Weekend Off-Peak: ~8.7 cents per kWh
+- Mid-Peak: ~12.2 cents per kWh
+- On-Peak: ~28.6 cents per kWh
+
+Tiered:
+- Tier 1: ~10.3 cents per kWh
+- Tier 2: ~12.5 cents per kWh
+
+----------------------------------------
+COMMON BILL COMPONENTS
+----------------------------------------
+
+1. Electricity Charge:
+   Based on kWh and pricing plan
+
+2. Delivery Charge:
+   Covers infrastructure and distribution
+   Often a large portion of the bill
+
+3. Regulatory Charge:
+   Administrative costs
+
+4. HST:
+   13% tax applied to total
+
+----------------------------------------
+IMPORTANT INSIGHTS FOR ANALYSIS
+----------------------------------------
+
+- High bills are often caused by delivery charges, not usage
+- Using electricity during On-Peak increases cost significantly
+- Tiered pricing is better for consistent usage patterns
+- ULO is best for users with high overnight consumption (e.g., EV charging)

@@ -1,0 +1,7 @@
+Ontario electricity bill basics:
+
+- Most bills include an electricity charge, delivery charge, regulatory charge, and HST.
+- The electricity charge depends on the pricing plan and the amount of electricity used.
+- Delivery charges can be a large part of the bill even when usage is modest.
+- HST is applied to the bill total.
+- Use the bill text first when identifying rates, periods, or line items. Use this knowledge only as supporting background.
