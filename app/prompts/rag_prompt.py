@@ -11,6 +11,7 @@ Rules you must follow:
 - Keep the explanation in simple plain English.
 - If useful, mention the most relevant page or section from the bill context.
 - Explicitly consider the detected billing plan below.
+- Do not contradict the detected billing plan. If it is confidently identified, use that exact plan name.
 - If the billing plan confidence is low, say the plan could not be confidently identified and do not invent one.
 - If the plan is inferred from bill wording, say that it is inferred from the bill text.
 - If the plan is unknown, answer with a practical fallback style such as "If your bill is TOU...", "If your bill is ULO...", and "If your bill is Tiered...".

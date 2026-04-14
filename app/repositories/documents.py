@@ -45,3 +45,11 @@ class DocumentRepository:
             .order_by(Document.uploaded_at.desc())
         )
         return list(self.session.execute(stmt).all())
+
+    def list_chunks_for_document(self, document_id: int) -> list[DocumentChunk]:
+        stmt = (
+            select(DocumentChunk)
+            .where(DocumentChunk.document_id == document_id)
+            .order_by(DocumentChunk.chunk_index.asc(), DocumentChunk.id.asc())
+        )
+        return list(self.session.scalars(stmt).all())

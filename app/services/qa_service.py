@@ -1,10 +1,12 @@
 import json
 import logging
+import re
 
 from sqlalchemy.orm import Session
 
 from app.core.config import get_settings
 from app.prompts.rag_prompt import RAG_ANSWER_PROMPT
+from app.repositories.documents import DocumentRepository
 from app.repositories.query_logs import QueryLogRepository
 from app.schemas.qa import AnswerSource, AskRequest, AskResponse
 from app.services.knowledge_loader import (
@@ -24,6 +26,7 @@ class RAGQAService:
     def __init__(self, session: Session) -> None:
         self.session = session
         self.settings = get_settings()
+        self.document_repository = DocumentRepository(session)
         self.log_repository = QueryLogRepository(session)
         self.vector_store = ChromaVectorStoreService()
         factory = GeminiClientFactory()
@@ -73,7 +76,7 @@ class RAGQAService:
             ]
         )
 
-        detection_text = "\n\n".join(document.page_content for document, _ in retrieved_docs)
+        detection_text = self._build_detection_text(retrieved_docs)
         detection = detect_billing_plan(detection_text)
         logger.info(
             "Detected billing plan %s (confidence=%.2f, evidence=%s)",
@@ -81,6 +84,19 @@ class RAGQAService:
             detection.confidence,
             detection.evidence,
         )
+
+        if self._is_billing_plan_question(payload.question):
+            answer = self._build_direct_plan_answer(detection)
+            retrieved_chunks_json = json.dumps([source.model_dump() for source in sources], ensure_ascii=False)
+            self.log_repository.create(payload.question, answer, retrieved_chunks_json)
+            self.session.commit()
+            return AskResponse(
+                answer=answer,
+                detected_plan=detection.detected_plan,
+                detection_confidence=detection.confidence,
+                detection_evidence=detection.evidence,
+                sources=sources,
+            )
 
         common_knowledge = load_common_knowledge()
         if detection.detected_plan == "Unknown":
@@ -115,4 +131,52 @@ class RAGQAService:
             detection_confidence=detection.confidence,
             detection_evidence=detection.evidence,
             sources=sources,
+        )
+
+    def _build_detection_text(self, retrieved_docs: list[tuple]) -> str:
+        primary_document_id: int | None = None
+        fallback_parts: list[str] = []
+
+        for document, _ in retrieved_docs:
+            fallback_parts.append(document.page_content)
+            document_id = document.metadata.get("document_id")
+            if primary_document_id is None and isinstance(document_id, int):
+                primary_document_id = document_id
+
+        if primary_document_id is None:
+            return "\n\n".join(fallback_parts)
+
+        chunks = self.document_repository.list_chunks_for_document(primary_document_id)
+        if not chunks:
+            return "\n\n".join(fallback_parts)
+
+        return "\n\n".join(chunk.chunk_text for chunk in chunks)
+
+    @staticmethod
+    def _is_billing_plan_question(question: str) -> bool:
+        normalized = re.sub(r"\s+", " ", question.casefold()).strip()
+        plan_patterns = (
+            r"\bbilling plan\b",
+            r"\bwhat plan\b",
+            r"\bwhich plan\b",
+            r"\bmy plan\b",
+            r"\bplan am i on\b",
+            r"\brate plan\b",
+            r"\btime[- ]of[- ]use\b",
+            r"\bultra[- ]low overnight\b",
+            r"\btiered\b",
+        )
+        return any(re.search(pattern, normalized) for pattern in plan_patterns)
+
+    @staticmethod
+    def _build_direct_plan_answer(detection) -> str:
+        if detection.detected_plan == "TOU":
+            return "Your billing plan is TOU (Time-of-Use), based on the bill text."
+        if detection.detected_plan == "ULO":
+            return "Your billing plan is ULO (Ultra-Low Overnight), based on the bill text."
+        if detection.detected_plan == "Tiered":
+            return "Your billing plan is Tiered, based on the bill text."
+        return (
+            "I could not confidently identify your billing plan from the bill text, "
+            "so I do not want to guess."
         )
